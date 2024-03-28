@@ -1,0 +1,340 @@
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36259718 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      27	  43688043 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  75490540 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  42607127 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 102223844 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45770541 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 106362046 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 334552436 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 138868260 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 670075615 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 201140271 ns/op
+PASS
+ok  	stack	16.766s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36001775 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      27	  43695598 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      15	  69472474 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      26	  42376042 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      12	 105110678 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45783519 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 103412778 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 334370385 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 138705459 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 660695001 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 203565399 ns/op
+PASS
+ok  	stack	16.649s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36760428 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  42739145 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  63473392 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  43391533 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 103909467 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45578595 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 104789774 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 331692146 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 139362258 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 661566242 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 201149536 ns/op
+PASS
+ok  	stack	17.130s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  37348712 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43802043 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  65949887 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      24	  43678930 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      12	 102278258 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  44856204 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      12	 103935799 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 322884542 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 139048505 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 650669499 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 203647112 ns/op
+PASS
+ok  	stack	18.172s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36502061 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43985908 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  73348769 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  44355361 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 104047193 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45295441 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 100007860 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 333905820 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 139184348 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 670765496 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 203148569 ns/op
+PASS
+ok  	stack	18.034s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  37028091 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      27	  42600209 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  71047135 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      26	  43772068 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 103743748 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  44247885 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 103589352 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 333865517 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 139241413 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 657206004 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 206914580 ns/op
+PASS
+ok  	stack	15.831s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  36598603 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43460519 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  67212611 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  43471320 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      12	 104842414 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45399744 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 109597918 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 338058326 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 143010319 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 664083440 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 215386753 ns/op
+PASS
+ok  	stack	18.330s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  36814082 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43138300 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  71833832 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  44111313 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 105277289 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  46126395 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 115633362 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 330476506 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 143932366 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 643165556 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 222122023 ns/op
+PASS
+ok  	stack	18.400s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  37097650 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43387315 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  71567968 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      24	  44248180 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 103893944 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45573864 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 107848605 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 335171332 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       7	 146429483 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 656142490 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 222292602 ns/op
+PASS
+ok  	stack	17.164s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  37147814 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43250648 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  70602635 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      26	  44783854 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 107447530 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      27	  45545054 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 110971300 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 333908003 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 150294140 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 660209630 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 231518050 ns/op
+PASS
+ok  	stack	17.254s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36260844 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43654639 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  60448134 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      26	  45045646 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      12	 109640774 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  45886288 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	       9	 112588270 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 339620077 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 154383885 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 695274516 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 235855599 ns/op
+PASS
+ok  	stack	17.591s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36198646 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      27	  43654704 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  72073839 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      24	  43647405 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      13	 118134806 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  45679532 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	       9	 112072885 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 333177232 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 157718117 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 674299812 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 237250824 ns/op
+PASS
+ok  	stack	17.966s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  36835866 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      27	  44208793 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  61811776 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  43082186 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 113500125 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  43738985 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 114569060 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 338062679 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       7	 161585045 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 682933906 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 258552873 ns/op
+PASS
+ok  	stack	16.305s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      32	  37685501 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      25	  46365568 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  75247373 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  45571536 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	       9	 134462271 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  50810636 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	       8	 139299520 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 310201008 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       7	 177573803 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 657258980 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       4	 269524216 ns/op
+PASS
+ok  	stack	19.083s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  37965608 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43685264 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  70418427 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      26	  43833531 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	       9	 123079383 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  45970150 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      12	 124150723 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 330286302 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       8	 170092301 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 664361236 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       5	 251738927 ns/op
+PASS
+ok  	stack	18.393s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  37228224 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      25	  43366726 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  63006204 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      24	  44052110 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	       9	 123230559 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  44732520 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 121154190 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 334978381 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       7	 173116315 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 663007909 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       4	 253563661 ns/op
+PASS
+ok  	stack	15.101s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      28	  37302544 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43765841 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      19	  70189688 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  43585660 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 125736543 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      25	  44108141 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 127807205 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 330752224 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       7	 180281194 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 645127624 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       4	 261423266 ns/op
+PASS
+ok  	stack	17.578s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36591495 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43316852 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  68592341 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  42624155 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	      10	 130635925 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  46506376 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	       8	 131941120 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 333357425 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       6	 185468655 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 665198387 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       4	 271483556 ns/op
+PASS
+ok  	stack	16.088s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      30	  36494496 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43171114 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  66613385 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  43653763 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	       9	 133512048 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      26	  42576000 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	      10	 129979259 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       4	 333677014 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       6	 189823204 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 671420524 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       4	 275021208 ns/op
+PASS
+ok  	stack	17.546s
+goos: linux
+goarch: amd64
+pkg: stack
+cpu: AMD Ryzen 7 5800U with Radeon Graphics         
+BenchmarkNonConcurrent/Non-concurent:-16         	      31	  36730115 ns/op
+BenchmarkNonConcurrent/Treiber:-16               	      26	  43588689 ns/op
+BenchmarkNonConcurrent/Backoff:-16               	      18	  68133244 ns/op
+BenchmarkConcurrent/Treiber_100:-16              	      25	  43284821 ns/op
+BenchmarkConcurrent/Backoff_100:-16              	       9	 140625223 ns/op
+BenchmarkConcurrent/Treiber_all:-16              	      25	  44965693 ns/op
+BenchmarkConcurrent/Backoff_all:-16              	       9	 138777617 ns/op
+BenchmarkConcurrentElimination/Treiber(Rand):-16 	       3	 338300137 ns/op
+BenchmarkConcurrentElimination/Backoff(Rand)-16  	       6	 194935452 ns/op
+BenchmarkConcurrentElimination/Treiber(Row)-16   	       2	 666410553 ns/op
+BenchmarkConcurrentElimination/Backoff(Row)-16   	       4	 287100208 ns/op
+PASS
+ok  	stack	16.473s
