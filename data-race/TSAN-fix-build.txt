@@ -1,0 +1,217 @@
+g++ -Wall -o sets_test main.cpp lazySync.h set.h fineGrainedSync.h -pthread -fsanitize=thread -g
+TEST FOR FINE GRAINDES SET
+starting writers test
+writers test: ok
+starting readers writers test
+readers writers test: ok
+starting readers test
+TEST END
+
+TEST FOR LAZY SET
+starting writers test
+==================
+WARNING: ThreadSanitizer: data race (pid=391292)
+  Read of size 8 at 0x7b1000000048 by thread T11:
+    #0 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:32 (sets_test+0x965a)
+    #1 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Previous write of size 8 at 0x7b1000000048 by thread T10 (mutexes: write M2166, write M2165):
+    #0 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:57 (sets_test+0x97f3)
+    #1 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Location is heap block of size 64 at 0x7b1000000040 allocated by main thread:
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:12 (sets_test+0x472b)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Mutex M2166 (0x7b1000022ed0) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:13 (sets_test+0x478b)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Mutex M2165 (0x7b1000000050) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:12 (sets_test+0x474a)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Thread T11 (tid=391317, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+  Thread T10 (tid=391316, finished) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+SUMMARY: ThreadSanitizer: data race /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:32 in LSSet<int>::Add(int const&)
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=391292)
+  Read of size 4 at 0x7b1000022400 by thread T11:
+    #0 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:34 (sets_test+0x9694)
+    #1 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Previous write of size 8 at 0x7b1000022400 by thread T10 (mutexes: write M2166, write M2165):
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Location is heap block of size 64 at 0x7b1000022400 allocated by thread T10:
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Mutex M2166 (0x7b1000022ed0) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:13 (sets_test+0x478b)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Mutex M2165 (0x7b1000000050) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:12 (sets_test+0x474a)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Thread T11 (tid=391317, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+  Thread T10 (tid=391316, finished) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+SUMMARY: ThreadSanitizer: data race /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:34 in LSSet<int>::Add(int const&)
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=391292)
+  Read of size 8 at 0x7b1000022408 by thread T11:
+    #0 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:34 (sets_test+0x96c0)
+    #1 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Previous write of size 8 at 0x7b1000022408 by thread T10 (mutexes: write M2166, write M2167):
+    #0 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:57 (sets_test+0x97f3)
+    #1 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Location is heap block of size 64 at 0x7b1000022400 allocated by thread T10:
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Mutex M2166 (0x7b1000022ed0) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:13 (sets_test+0x478b)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Mutex M2167 (0x7b1000022410) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97c3)
+    #3 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Thread T11 (tid=391317, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+  Thread T10 (tid=391316, finished) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+SUMMARY: ThreadSanitizer: data race /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:34 in LSSet<int>::Add(int const&)
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=391292)
+  Read of size 8 at 0x7b1000020b48 by thread T11:
+    #0 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:34 (sets_test+0x96c0)
+    #1 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Previous write of size 8 at 0x7b1000020b48 by thread T10 (mutexes: write M2166, write M2265):
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Location is heap block of size 64 at 0x7b1000020b40 allocated by thread T10:
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Mutex M2166 (0x7b1000022ed0) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:13 (sets_test+0x478b)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Mutex M2265 (0x7b1000020b90) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97c3)
+    #3 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Thread T11 (tid=391317, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+  Thread T10 (tid=391316, finished) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+SUMMARY: ThreadSanitizer: data race /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:34 in LSSet<int>::Add(int const&)
+==================
+==================
+WARNING: ThreadSanitizer: data race (pid=391292)
+  Atomic read of size 1 at 0x7b1000020b10 by thread T11:
+    #0 pthread_mutex_lock ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors.inc:4240 (libtsan.so.0+0x53908)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:39 (sets_test+0x96dd)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Previous write of size 8 at 0x7b1000020b10 by thread T12 (mutexes: write M2166, write M2266):
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Location is heap block of size 64 at 0x7b1000020b00 allocated by thread T12:
+    #0 operator new(unsigned long) ../../../../src/libsanitizer/tsan/tsan_new_delete.cpp:64 (libtsan.so.0+0x8f162)
+    #1 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97a4)
+    #2 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Mutex M2166 (0x7b1000022ed0) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::LSSet(int const&, int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:13 (sets_test+0x478b)
+    #3 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:214 (sets_test+0x3471)
+
+  Mutex M2266 (0x7b1000020b50) created at:
+    #0 pthread_mutex_init ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:1227 (libtsan.so.0+0x4bee1)
+    #1 Node<int>::Node(int) /home/ya/projects/parallel-course/data-race/fix-build/set.h:25 (sets_test+0x5c46)
+    #2 LSSet<int>::Add(int const&) /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:54 (sets_test+0x97c3)
+    #3 AddElem(void*) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:32 (sets_test+0x25f9)
+
+  Thread T11 (tid=391317, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+  Thread T12 (tid=391318, running) created by main thread at:
+    #0 pthread_create ../../../../src/libsanitizer/tsan/tsan_interceptors_posix.cpp:969 (libtsan.so.0+0x605b8)
+    #1 runTest(mySet<int>*, int, int) /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:98 (sets_test+0x2b66)
+    #2 main /home/ya/projects/parallel-course/data-race/fix-build/main.cpp:217 (sets_test+0x34a4)
+
+SUMMARY: ThreadSanitizer: data race /home/ya/projects/parallel-course/data-race/fix-build/lazySync.h:39 in LSSet<int>::Add(int const&)
+==================
+writers test: ok
+starting readers writers test
+readers writers test: ok
+starting readers test
+TEST END
+
+ThreadSanitizer: reported 5 warnings

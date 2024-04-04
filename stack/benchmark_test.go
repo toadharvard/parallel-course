@@ -62,7 +62,6 @@ func PushPopConcurrentAll(stack Stack[int]) {
 		}(j)
 	}
 	wg.Wait()
-
 	wg.Add(numberOfElements)
 
 	for j := 0; j < numberOfElements; j++ {

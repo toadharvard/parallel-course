@@ -1,0 +1,124 @@
+make all && valgrind --tool=helgrind ./sets_test
+==393158== Helgrind, a thread error detector
+==393158== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==393158== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==393158== Command: ./sets_test
+==393158== 
+TEST FOR LAZY SET
+starting writers test
+==393158== ---Thread-Announcement------------------------------------------
+==393158== 
+==393158== Thread #4 was created
+==393158==    at 0x4CC29F3: clone (clone.S:76)
+==393158==    by 0x4CC38EE: __clone_internal (clone-internal.c:83)
+==393158==    by 0x4C316D8: create_thread (pthread_create.c:295)
+==393158==    by 0x4C321FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==393158==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10A83F: runTest(mySet<int>*, int, int) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10AFAA: main (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158== 
+==393158== ---Thread-Announcement------------------------------------------
+==393158== 
+==393158== Thread #3 was created
+==393158==    at 0x4CC29F3: clone (clone.S:76)
+==393158==    by 0x4CC38EE: __clone_internal (clone-internal.c:83)
+==393158==    by 0x4C316D8: create_thread (pthread_create.c:295)
+==393158==    by 0x4C321FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==393158==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10A83F: runTest(mySet<int>*, int, int) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10AFAA: main (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158== 
+==393158== ---Thread-Announcement------------------------------------------
+==393158== 
+==393158== Thread #2 was created
+==393158==    at 0x4CC29F3: clone (clone.S:76)
+==393158==    by 0x4CC38EE: __clone_internal (clone-internal.c:83)
+==393158==    by 0x4C316D8: create_thread (pthread_create.c:295)
+==393158==    by 0x4C321FF: pthread_create@@GLIBC_2.34 (pthread_create.c:828)
+==393158==    by 0x4853767: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10A83F: runTest(mySet<int>*, int, int) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10AFAA: main (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158== 
+==393158== ----------------------------------------------------------------
+==393158== 
+==393158==  Lock at 0x4DE0C20 was first observed
+==393158==    at 0x4854BFE: pthread_mutex_init (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10CE2E: Node<int>::Node(int) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10BB38: LSSet<int>::LSSet(int const&, int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10AF77: main (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==  Address 0x4de0c20 is 16 bytes inside a block of size 64 alloc'd
+==393158==    at 0x484B093: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10BB25: LSSet<int>::LSSet(int const&, int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10AF77: main (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==  Block was alloc'd by thread #1
+==393158== 
+==393158==  Lock at 0x4DE5210 was first observed
+==393158==    at 0x4854BFE: pthread_mutex_init (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10CE2E: Node<int>::Node(int) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10EDE5: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158==  Address 0x4de5210 is 16 bytes inside a block of size 64 alloc'd
+==393158==    at 0x484B093: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10EDD2: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158==  Block was alloc'd by thread #2
+==393158== 
+==393158== Possible data race during read of size 8 at 0x4DE5208 by thread #4
+==393158== Locks held: none
+==393158==    at 0x10ED3B: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158== 
+==393158== This conflicts with a previous write of size 8 by thread #3
+==393158== Locks held: 2, at addresses 0x4DE0C20 0x4DE5210
+==393158==    at 0x10EDFE: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158==  Address 0x4de5208 is 8 bytes inside a block of size 64 alloc'd
+==393158==    at 0x484B093: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10EDD2: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158==  Block was alloc'd by thread #2
+==393158== 
+==393158== ----------------------------------------------------------------
+==393158== 
+==393158== Possible data race during read of size 4 at 0x4DE5F70 by thread #4
+==393158== Locks held: none
+==393158==    at 0x10ED2B: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158==  Address 0x4de5f70 is 0 bytes inside a block of size 64 alloc'd
+==393158==    at 0x484B093: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x10EDD2: LSSet<int>::Add(int const&) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x10A467: AddElem(void*) (in /home/ya/projects/parallel-course/data-race/fix-build/sets_test)
+==393158==    by 0x485396A: ??? (in /usr/libexec/valgrind/vgpreload_helgrind-amd64-linux.so)
+==393158==    by 0x4C31AC2: start_thread (pthread_create.c:442)
+==393158==    by 0x4CC2A03: clone (clone.S:100)
+==393158==  Block was alloc'd by thread #3
+==393158== 
+writers test: ok
+starting readers writers test
+readers writers test: ok
+starting readers test
+TEST END
+
+==393158== 
+==393158== Use --history-level=approx or =none to gain increased speed, at
+==393158== the cost of reduced accuracy of conflicting-access information
+==393158== For lists of detected and suppressed errors, rerun with: -s
+==393158== ERROR SUMMARY: 201 errors from 2 contexts (suppressed: 736 from 25)
