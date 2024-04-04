@@ -59,7 +59,6 @@ func (ex *exchanger[T]) exchange(value *T, waitSteps int) (*T, error) {
 				return exchangerItem.value, nil
 			}
 		}
-
 	}
 	return new(T), errors.New("timeout")
 }

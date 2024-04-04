@@ -138,7 +138,7 @@ func BenchmarkConcurrent(b *testing.B) {
 	b.Run("Treiber 100:", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			treiberStack := treiber.NewStack[int]()
-			PushPopNonConcurent(&treiberStack)
+			PushPopConcurrent100(&treiberStack)
 		}
 	})
 
@@ -152,7 +152,7 @@ func BenchmarkConcurrent(b *testing.B) {
 	b.Run("Treiber all:", func(b *testing.B) {
 		for i := 0; i < b.N; i++ {
 			treiberStack := treiber.NewStack[int]()
-			PushPopNonConcurent(&treiberStack)
+			PushPopConcurrent100(&treiberStack)
 		}
 	})
 
