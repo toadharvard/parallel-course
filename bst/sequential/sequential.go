@@ -1,96 +1,41 @@
-package finegrained
+package sequential
 
 import (
 	"fmt"
-	"sync"
 
 	"golang.org/x/exp/constraints"
 )
 
 type node[T constraints.Ordered] struct {
-	data  T
 	left  *node[T]
+	data  T
 	right *node[T]
-	mux   sync.Mutex
 }
-
 type Tree[T constraints.Ordered] struct {
 	root *node[T]
-	mux  sync.Mutex
 }
 
-func (nd *node[T]) lock() {
-	if nd == nil {
-		return
-	}
-	nd.mux.Lock()
-}
-
-func (nd *node[T]) unlock() {
-	if nd == nil {
-		return
-	}
-	nd.mux.Unlock()
-}
-
-func (t *Tree[T]) lock() {
-	if t == nil {
-		return
-	}
-	t.mux.Lock()
-}
-
-func (t *Tree[T]) unlock() {
-	if t == nil {
-		return
-	}
-	t.mux.Unlock()
-}
-
-func (t *Tree[T]) parentUnlock(parent *node[T]) {
-	if parent == nil {
-		t.unlock()
-	} else {
-		parent.unlock()
-	}
-}
-func (t *Tree[T]) findNodeAndParent(data T) (nd *node[T], parent *node[T]) {
-	t.lock()
-	if t.root == nil {
-		return
-	}
-	t.root.lock()
-	nd = t.root
-	for nd != nil && nd.data != data {
-		grandparent := parent
-		parent = nd
-		if data < nd.data {
-			if nd.left != nil {
-				nd.left.lock()
-			}
-			nd = nd.left
+func (tree *Tree[T]) findNodeAndParent(data T) (current *node[T], parent *node[T]) {
+	current = tree.root
+	for current != nil && current.data != data {
+		parent = current
+		if data < current.data {
+			current = current.left
 		} else {
-			if nd.right != nil {
-				nd.right.lock()
-			}
-			nd = nd.right
+			current = current.right
 		}
-		t.parentUnlock(grandparent)
 	}
 	return
 }
 
-func (t *Tree[T]) Insert(data T) {
-	nd, parent := t.findNodeAndParent(data)
+func (tree *Tree[T]) Insert(data T) {
+	nd, parent := tree.findNodeAndParent(data)
 	inserted := &node[T]{data: data}
-	if t.root == nil {
-		defer t.unlock()
-		t.root = inserted
+	if tree.root == nil {
+		tree.root = inserted
 		return
 	}
-	defer t.parentUnlock(parent)
 	if nd != nil {
-		defer nd.unlock()
 		return
 	}
 	if data < parent.data {
@@ -100,26 +45,20 @@ func (t *Tree[T]) Insert(data T) {
 	}
 }
 
-func (t *Tree[T]) Find(data T) bool {
-	nd, parent := t.findNodeAndParent(data)
-	defer t.parentUnlock(parent)
-	if nd != nil {
-		defer nd.unlock()
-		return true
-	}
-	return false
+func (tree *Tree[T]) Find(data T) bool {
+	curr, _ := tree.findNodeAndParent(data)
+	return curr != nil
 }
 
-func (t *Tree[T]) Remove(data T) {
-	nd, parent := t.findNodeAndParent(data)
-	defer t.parentUnlock(parent)
+func (tree *Tree[T]) Remove(data T) {
+	nd, parent := tree.findNodeAndParent(data)
 	if nd == nil {
 		return
 	}
 
 	if nd.left == nil && nd.right == nil {
-		if nd == t.root {
-			t.root = nil
+		if nd == tree.root {
+			tree.root = nil
 		} else if nd.data < parent.data {
 			parent.left = nil
 		} else {
@@ -129,8 +68,8 @@ func (t *Tree[T]) Remove(data T) {
 	}
 
 	if nd.left == nil {
-		if nd == t.root {
-			t.root = nd.right
+		if nd == tree.root {
+			tree.root = nd.right
 		} else if nd.data < parent.data {
 			parent.left = nd.right
 		} else {
@@ -140,8 +79,8 @@ func (t *Tree[T]) Remove(data T) {
 	}
 
 	if nd.right == nil {
-		if nd == t.root {
-			t.root = nd.left
+		if nd == tree.root {
+			tree.root = nd.left
 		} else if nd.data < parent.data {
 			parent.left = nd.left
 		} else {
@@ -149,21 +88,14 @@ func (t *Tree[T]) Remove(data T) {
 		}
 		return
 	}
-	defer nd.unlock()
-	nd.right.lock()
+
 	succParent := nd
 	succ := nd.right
 	for succ.left != nil {
-		succGrandparent := succParent
 		succParent = succ
-		succ.left.lock()
 		succ = succ.left
-		if succGrandparent != nil && succGrandparent != nd {
-			succGrandparent.unlock()
-		}
 	}
 	if succParent != nd {
-		defer succParent.unlock()
 		succParent.left = succ.right
 	} else {
 		succParent.right = succ.right
@@ -171,7 +103,6 @@ func (t *Tree[T]) Remove(data T) {
 	nd.data = succ.data
 }
 
-// Concurrent unsafe methods
 func (t *Tree[T]) String() string {
 	return fmt.Sprintf("%v", t.root.inorder())
 }

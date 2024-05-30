@@ -2,25 +2,27 @@ package bst_test
 
 import (
 	"bst/coarsegrained"
-	"log/slog"
+	"bst/finegrained"
+	"bst/optimistic"
 	"math/rand"
 	"sync"
 	"testing"
 )
 
-type Bst interface {
-	Insert(data int)
-	Delete(data int)
-	Search(data int) bool
-	Valid() bool
+var values []int
+var numberSize = 100_000
+
+type BST interface {
+	Insert(x int)
+	Find(x int) bool
+	Remove(x int)
+	IsValid() bool
 	String() string
+	IsEmpty() bool
 }
 
-var values []int
-var numberSize = 2
-
 func init() {
-	rnd := rand.New(rand.NewSource(52))
+	rnd := rand.New(rand.NewSource(0xdeadbeef))
 	values = make([]int, numberSize)
 	for i := range values {
 		values[i] = rnd.Intn(1000)
@@ -28,52 +30,63 @@ func init() {
 }
 
 func TestFuzzing(t *testing.T) {
-	trees := []struct {
-		name string
-		bst  Bst
-	}{
-		{name: "CoarseGrained", bst: coarsegrained.New[int]()},
+	trees := map[string]BST{
+		"CoarseGrained": coarsegrained.New[int](),
+		"FineGrained":   finegrained.New[int](),
+		"Optimistic":    optimistic.New[int](),
 	}
 	var wg sync.WaitGroup
 
-	for _, tree := range trees {
-		t.Run("Insert"+tree.name, func(t *testing.T) {
+	for name, tree := range trees {
+		t.Run("Insert"+name, func(t *testing.T) {
 			for _, v := range values {
 				wg.Add(1)
-				go func(val int) {
+				go func(x int) {
 					defer wg.Done()
-					tree.bst.Insert(val)
+					tree.Insert(x)
 				}(v)
 			}
 			wg.Wait()
-			slog.Info(tree.bst.String())
-			if !tree.bst.Valid() {
-				t.Error("invalid tree")
+			if !tree.IsValid() {
+				t.Errorf("tree is not valid")
 			}
 		})
 
-		t.Run("InsertDelete"+tree.name, func(t *testing.T) {
+		t.Run("FindAfterInsert"+name, func(t *testing.T) {
 			for _, v := range values {
 				wg.Add(1)
-				go func(val int) {
+				go func(x int) {
 					defer wg.Done()
-					tree.bst.Insert(val)
+					tree.Insert(x)
 				}(v)
 			}
 			wg.Wait()
-			slog.Info(tree.bst.String())
+			for _, v := range values {
+				if !tree.Find(v) {
+					t.Errorf("tree is not valid")
+				}
+			}
+		})
 
+		t.Run("RemoveAfterInsert"+name, func(t *testing.T) {
 			for _, v := range values {
 				wg.Add(1)
-				go func(val int) {
+				go func(x int) {
 					defer wg.Done()
-					tree.bst.Delete(val)
+					tree.Insert(x)
 				}(v)
 			}
 			wg.Wait()
-			slog.Info(tree.bst.String())
-			if !tree.bst.Valid() {
-				t.Error("invalid tree")
+			for _, v := range values {
+				wg.Add(1)
+				go func(x int) {
+					defer wg.Done()
+					tree.Remove(x)
+				}(v)
+			}
+			wg.Wait()
+			if !tree.IsEmpty() {
+				t.Errorf("tree is not valid")
 			}
 		})
 	}
